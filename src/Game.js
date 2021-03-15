@@ -140,6 +140,8 @@ let mapWidth = 20
 let mapHeight = Math.floor(mapWidth*.75)
 let numberOfRooms = 6
 let playerStart = [Math.floor(mapWidth/2), Math.floor(mapHeight/2)]
+let validLocations = []
+let allValidLocations = []
 
 
 //Pre-game random generators
@@ -169,6 +171,7 @@ const generateAllRooms = () => {
       path = checkPath(room, start, end)
       path ? console.log("room created successfully") : console.log("room creation failed")
     }
+    allValidLocations.push(validLocations)
     addLongGrass(room)
     allRooms.push(room)
 
@@ -225,6 +228,7 @@ const addLongGrass = room => {
 }
 
 const checkPath = (room, start, end) => {
+  validLocations = []
   let grid = room.slice()
   //create queue initialised to the start
   let currentLocation = {
@@ -239,6 +243,7 @@ const checkPath = (room, start, end) => {
     //Assesses whether the explored square is valid
     //Takes coordinates, and returns an object with coordinates and status
   const checkLocation = (newX, newY) => {
+    
     let newLocation = {
       x: newX,
       y: newY,
@@ -271,6 +276,7 @@ const checkPath = (room, start, end) => {
   }
 
   while (queue.length > 0) {
+  validLocations.push([queue[0].x, queue[0].y])
   currentLocation = queue.shift()
   //Mark off current location:
   grid[currentLocation.y][currentLocation.x] = "C"
@@ -319,17 +325,14 @@ const checkPath = (room, start, end) => {
 }
 
 const findEmptySpace = (i) => {
-  let spaceIsEmpty = false
-  let x = null
-  let y = null
-  while (!spaceIsEmpty) {
-    x = Math.floor(Math.random() * mapWidth) 
-    y = Math.floor(Math.random() * mapHeight)
-    if (rooms[i][y][x] === ".") {
-      spaceIsEmpty = true
+  let tmp = []
+  let filteredLocations = allValidLocations[i].filter(location => {
+    if (tmp.indexOf(location.toString()) < 0) {
+        tmp.push(location.toString());
+        return location;
     }
-  }
-  return [x, y]
+  })
+  return allValidLocations[i][Math.floor(Math.random()*allValidLocations[i].length)]
 }
 
 const addItems = () => {
@@ -340,18 +343,6 @@ const addItems = () => {
     //numberArr is for number of items per room
     let numberArr = [4,1,1,1,3,0]
     for (let n = 0; n < numberArr[i]; n++) {
-      /*
-      let path = false
-      let itemLocation = []
-      let end = []
-      i === 0 ? end = playerStart : end = [0, Math.floor(mapHeight/2)]
-      while (!path) {
-            regenerateRooms(rooms[i])
-            itemLocation = findEmptySpace(i)
-            path = checkPath(rooms[i], itemLocation, end)
-            
-      }
-      */
       let itemLocation = findEmptySpace(i)
       let weights = [].concat(...availableItems.map((obj) => Array(Math.ceil(obj.rarity * 100)).fill(obj)))
       let chosenItem = weights[Math.floor(Math.random() * weights.length)]
@@ -379,18 +370,6 @@ const addEnemies = () => {
     //numberArr is for number of enemies per room
     let numberArr = [1,2,3,4,5,1]
     for (let n = 0; n < numberArr[i]; n++) {
-      
-      /*
-      let path = false
-      let enemyLocation = []
-      let end = []
-      i === 0 ? end = playerStart : end = [0, Math.floor(mapHeight/2)]
-      while (!path) {
-            enemyLocation = findEmptySpace(i)
-            path = checkPath(rooms[i], enemyLocation, end)
-            regenerateRooms(rooms[i])
-      }
-      */
       let enemyLocation = findEmptySpace(i)
       let enemyObject = enemiesList[Math.floor(Math.random()*(enemiesList.length-1))]
       i === 5 
@@ -405,6 +384,9 @@ return enemies
 let rooms = generateAllRooms()
 let allEnemies = addEnemies()
 let allItems = addItems()
+
+console.log(validLocations)
+console.log(allValidLocations)
 
 function Game() {
   const didMountRef = useRef(false);
