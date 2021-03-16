@@ -1035,4 +1035,10 @@ function Item(props) {
              />
 }
 
+function Info(props) {
+  return (
+    <div>
+    </div>
+  )
+
 export default Game;
