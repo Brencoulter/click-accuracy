@@ -1044,8 +1044,11 @@ function Item(props) {
 function Info(props) {
   return (
     <div className="log scroll">
-    <h3>How to play</h3>
-    <p><span style={{ fontSize: "15px" }}><ArrowLeftSquare /><ArrowUpSquare /><ArrowRightSquare /><ArrowDownSquare /></span> to move</p> 
+    <p><span style={{ fontSize: "15px" }}><ArrowLeftSquare /><ArrowUpSquare /><ArrowRightSquare /><ArrowDownSquare /></span> to move</p>
+    <p>This game was put together in an effort to complete and polish a larger project</p>
+    <p>During the development, I learned a great deal about state management, data structures, and abstracting functionality. I also got to delve into basic pathing algorithms, which then forced me to work on optimisation</p>
+    <p>So what next? \n I plan to continuously upgrade this game over time. Balancing the gameplay (I am no game designer) is first up, and then a scoring system of some kind. I also wish to implement a feature for users to sign in and save their progress.</p>
+  <p>Settings such as map size and mobile/touchscreen friendly are also on the cards</p>
     </div>
   )
 }
