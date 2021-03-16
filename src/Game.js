@@ -18,7 +18,7 @@ import {
   Tooltip
  } from "react-bootstrap";
 
- import { House, ArrowRepeat } from 'react-bootstrap-icons';
+ import { Code, InfoCircle, ArrowRepeat, ArrowLeftSquare, ArrowRightSquare, ArrowDownSquare, ArrowUpSquare } from 'react-bootstrap-icons';
 
   //Components
 //import Navigation from './Navigation';
@@ -420,6 +420,11 @@ function Game() {
   const [map, setMap] = useState(rooms[room]) //2D array of strings
   const [items, setItems] = useState(allItems) //Array of Array of Objects rooms[room[item{}]]
   const [enemies, setEnemies] = useState(allEnemies) //Array of Array of Objects rooms[room[enemy{}]]
+  
+  const [info, setInfo] = useState(false)
+  const toggleInfo = () => {
+    setInfo(!info)
+  }
   
   //Game Log and Helper
   const [log, setLog] = useState([])
@@ -834,11 +839,12 @@ function Game() {
                 <p>Restart</p>
               </Col>
               <Col xs={6} className="no-pad">
-                <GameLog log={log} />
+               {!info && <GameLog log={log} />}
+                {info && <Info />}
               </Col>
               <Col xs={3} className="no-pad log scroll">
-                <House/>
-                <p>Home</p>
+                {info ? <Code onClick={toggleInfo}/> : <InfoCircle onClick={toggleInfo}/>}
+                {info ? <p>Game Log</p> : <p>About</p>}
               </Col>
             </Row>
     </Container>
@@ -1038,7 +1044,11 @@ function Item(props) {
 function Info(props) {
   return (
     <div>
+    <h3>How to play</h3>
+    <span><ArrowLeftSquare /><ArrowUpSquare /><ArrowRightSquare /><ArrowDownSquare /></span>
+    <p><span><ArrowLeftSquare /><ArrowUpSquare /><ArrowRightSquare /><ArrowDownSquare /></span> to move</p> 
     </div>
   )
+}
 
 export default Game;
