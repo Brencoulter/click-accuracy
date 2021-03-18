@@ -1,7 +1,8 @@
   //Dependencies
 import React, { useEffect, useState, useRef } from 'react';
 import './Game.css';
-import GameScreenshot from "./images/gameplay.gif"
+import GameScreenshot from "./images/gameplay.gif";
+import ScrollText from 'react-scroll-text';
 import {
   BrowserView,
   MobileView,
@@ -867,6 +868,26 @@ function CreditsScreen(props) {
   return (
     <div className="credits death-message">
       <h1>Congratulations! You Survived</h1>
+      <ScrollText>
+        <div style={{display: "inline", margin: "100px"}}>
+          <h2>Game Design</h2>
+          <p>Brendan Coulter</p>
+        </div>
+        <div style={{display: "inline", margin: "100px"}}>
+          <h2>Graphics</h2>
+          <p>Rachael Brock</p>
+        </div>
+        <div style={{display: "inline", margin: "100px"}}>
+          <h2>Development</h2>
+          <p>Brendan Coulter</p>
+        </div>
+        <div style={{display: "inline", margin: "100px"}}>
+          <h2>Play-Testing</h2>
+            <p>Brendan Coulter</p>
+            <p>Carter (10yrs Old)</p>
+            <p>Rachael Brock</p>
+        </div>
+      </ScrollText>
       <h1 className="replay-button" onClick={props.replay}>Play Again?</h1>
     </div>
   )
@@ -1047,7 +1068,7 @@ function Info(props) {
     <p><span style={{ fontSize: "15px" }}><ArrowLeftSquare /><ArrowUpSquare /><ArrowRightSquare /><ArrowDownSquare /></span> to move</p>
     <p>This game was put together in an effort to complete and polish a larger project</p>
     <p>During the development, I learned a great deal about state management, data structures, and abstracting functionality. I also got to delve into basic pathing algorithms, which then forced me to work on optimisation</p>
-    <p>So what next? \n I plan to continuously upgrade this game over time. Balancing the gameplay (I am no game designer) is first up, and then a scoring system of some kind. I also wish to implement a feature for users to sign in and save their progress.</p>
+    <p>So what next? I plan to continuously upgrade this game over time. Balancing the gameplay (I'm no game designer) is first up, and then a scoring system of some kind. I also wish to implement a feature for users to sign in and save their progress.</p>
   <p>Settings such as map size and mobile/touchscreen friendly are also on the cards</p>
     </div>
   )
