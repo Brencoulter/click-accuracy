@@ -213,7 +213,6 @@ const addTrees = room => {
        if (rand < 4 && y > 0 && y < mapHeight-1 && x > 0 && x < mapWidth-1) {
          room[y][x] = "X"
        }
-       room[playerStart[1]][playerStart[0]] = "."
     }
   }
   return room
