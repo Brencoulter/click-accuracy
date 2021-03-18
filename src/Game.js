@@ -1,7 +1,8 @@
   //Dependencies
 import React, { useEffect, useState, useRef } from 'react';
 import './Game.css';
-import GameScreenshot from "./images/gameplay.gif"
+import GameScreenshot from "./images/gameplay.gif";
+//import ScrollText from 'react-scroll-text';
 import {
   BrowserView,
   MobileView,
@@ -18,7 +19,7 @@ import {
   Tooltip
  } from "react-bootstrap";
 
- import { House, ArrowRepeat } from 'react-bootstrap-icons';
+ import { Code, InfoCircle, ArrowRepeat, ArrowLeftSquare, ArrowRightSquare, ArrowDownSquare, ArrowUpSquare } from 'react-bootstrap-icons';
 
   //Components
 //import Navigation from './Navigation';
@@ -420,6 +421,11 @@ function Game() {
   const [map, setMap] = useState(rooms[room]) //2D array of strings
   const [items, setItems] = useState(allItems) //Array of Array of Objects rooms[room[item{}]]
   const [enemies, setEnemies] = useState(allEnemies) //Array of Array of Objects rooms[room[enemy{}]]
+  
+  const [info, setInfo] = useState(false)
+  const toggleInfo = () => {
+    setInfo(!info)
+  }
   
   //Game Log and Helper
   const [log, setLog] = useState([])
@@ -830,15 +836,16 @@ function Game() {
             </Row>
             <Row noGutters >
               <Col xs={3} className="no-pad log scroll">
-                <ArrowRepeat className="clickable"onClick={replay}/>
+                <ArrowRepeat className="clickable" onClick={replay}/>
                 <p>Restart</p>
               </Col>
               <Col xs={6} className="no-pad">
-                <GameLog log={log} />
+               {!info && <GameLog log={log} />}
+                {info && <Info />}
               </Col>
               <Col xs={3} className="no-pad log scroll">
-                <House/>
-                <p>Home</p>
+                {info ? <Code className="clickable" onClick={toggleInfo} style={{ fontSize: "30px"}}/> : <InfoCircle onClick={toggleInfo} style={{ fontSize: "40px"}}/>}
+                {info ? <p>Game Log</p> : <p>About</p>}
               </Col>
             </Row>
     </Container>
@@ -858,9 +865,33 @@ function DeathScreen(props) {
 }
 
 function CreditsScreen(props) {
+  /*
+  Install Scroll Text then implement this
+  <ScrollText>
+        <div style={{display: "inline", margin: "100px"}}>
+          <h2>Game Design</h2>
+          <p>Brendan Coulter</p>
+        </div>
+        <div style={{display: "inline", margin: "100px"}}>
+          <h2>Graphics</h2>
+          <p>Rachael Brock</p>
+        </div>
+        <div style={{display: "inline", margin: "100px"}}>
+          <h2>Development</h2>
+          <p>Brendan Coulter</p>
+        </div>
+        <div style={{display: "inline", margin: "100px"}}>
+          <h2>Play-Testing</h2>
+            <p>Brendan Coulter</p>
+            <p>Carter (10yrs Old)</p>
+            <p>Rachael Brock</p>
+        </div>
+      </ScrollText>
+      */
   return (
     <div className="credits death-message">
       <h1>Congratulations! You Survived</h1>
+      
       <h1 className="replay-button" onClick={props.replay}>Play Again?</h1>
     </div>
   )
@@ -1033,6 +1064,18 @@ function Item(props) {
              className="entity"
              style={{ width: props.mapWidthPercentage, left: ((props.iX*(100 / rooms[props.room][0].length))+"%"), top: ((props.iY*(100 / rooms[props.room].length))+"%")}} 
              />
+}
+
+function Info(props) {
+  return (
+    <div className="log scroll">
+    <p><span style={{ fontSize: "15px" }}><ArrowLeftSquare /><ArrowUpSquare /><ArrowRightSquare /><ArrowDownSquare /></span> to move</p>
+    <p>This game was put together in an effort to complete and polish a larger project</p>
+    <p>During the development, I learned a great deal about state management, data structures, and abstracting functionality. I also got to delve into basic pathing algorithms, which then forced me to work on optimisation</p>
+    <p>So what next? I plan to continuously upgrade this game over time. Balancing the gameplay (I'm no game designer) is first up, and then a scoring system of some kind. I also wish to implement a feature for users to sign in and save their progress.</p>
+  <p>Settings such as map size and mobile/touchscreen friendly are also on the cards</p>
+    </div>
+  )
 }
 
 export default Game;
