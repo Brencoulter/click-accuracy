@@ -782,9 +782,11 @@ function Game() {
   return(
     <>
       <MobileView>
-        <h1>Sorry!</h1>
-        <p>This game isn't compatible with mobile. Please come back and check it out on your browser</p>
-        <Image className="gameplay-gif" src={GameScreenshot} alt="Screenshot of Game" />
+        <Container fluid className="d-md-none d-xs-block dark-background" style={{height: "100vh"}}>
+          <h1 className="titles">Sorry!</h1>
+          <p>This game isn't compatible with mobile. Please come back and check it out on your browser.</p>
+          <Image className="gameplay-gif" src={GameScreenshot} alt="Screenshot of Game" />
+    </Container>
       </MobileView>
       <BrowserView> 
         <Container fluid className="d-md-none d-xs-block dark-background" style={{height: "100vh"}}>
