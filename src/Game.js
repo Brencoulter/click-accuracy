@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Game.css';
 import GameScreenshot from "./images/gameplay.gif";
-import ScrollText from 'react-scroll-text';
+//import ScrollText from 'react-scroll-text';
 import {
   BrowserView,
   MobileView,
@@ -865,10 +865,9 @@ function DeathScreen(props) {
 }
 
 function CreditsScreen(props) {
-  return (
-    <div className="credits death-message">
-      <h1>Congratulations! You Survived</h1>
-      <ScrollText>
+  /*
+  Install Scroll Text then implement this
+  <ScrollText>
         <div style={{display: "inline", margin: "100px"}}>
           <h2>Game Design</h2>
           <p>Brendan Coulter</p>
@@ -888,6 +887,11 @@ function CreditsScreen(props) {
             <p>Rachael Brock</p>
         </div>
       </ScrollText>
+      */
+  return (
+    <div className="credits death-message">
+      <h1>Congratulations! You Survived</h1>
+      
       <h1 className="replay-button" onClick={props.replay}>Play Again?</h1>
     </div>
   )
