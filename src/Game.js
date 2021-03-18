@@ -164,7 +164,7 @@ const generateAllRooms = () => {
     let room = null
     while (!path) {
       room = generateRoom(n)
-      addTrees(room)
+      if (n < 5) addTrees(room)
       let start = null
       let end = null
       n === 0 ? start = playerStart : start = [0, Math.floor(mapHeight/2)]
@@ -213,6 +213,7 @@ const addTrees = room => {
        if (rand < 4 && y > 0 && y < mapHeight-1 && x > 0 && x < mapWidth-1) {
          room[y][x] = "X"
        }
+       room[playerStart[1]][playerStart[0]] = "."
     }
   }
   return room
@@ -374,7 +375,7 @@ const addEnemies = () => {
       let enemyLocation = findEmptySpace(i)
       let enemyObject = enemiesList[Math.floor(Math.random()*(enemiesList.length-1))]
       i === 5 
-      ? room.push({name: "boss", position: enemyLocation, direction: 1, hidden: false}) 
+      ? room.push({name: "boss", position: playerStart, direction: 1, hidden: false}) 
       : room.push({name: enemyObject.name, position: enemyLocation, direction: 1, hidden: false})
     }
     enemies.push(room)
