@@ -374,7 +374,7 @@ const addEnemies = () => {
       let enemyLocation = findEmptySpace(i)
       let enemyObject = enemiesList[Math.floor(Math.random()*(enemiesList.length-1))]
       i === 5 
-      ? room.push({name: "boss", position: playerStart, direction: 1, hidden: false}) 
+      ? room.push({name: "boss", position: enemyLocation, direction: 1, hidden: false}) 
       : room.push({name: enemyObject.name, position: enemyLocation, direction: 1, hidden: false})
     }
     enemies.push(room)
