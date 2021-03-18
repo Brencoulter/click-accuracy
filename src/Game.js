@@ -164,7 +164,7 @@ const generateAllRooms = () => {
     let room = null
     while (!path) {
       room = generateRoom(n)
-      if (n < 5) addTrees(room)
+      addTrees(room)
       let start = null
       let end = null
       n === 0 ? start = playerStart : start = [0, Math.floor(mapHeight/2)]
