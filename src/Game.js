@@ -858,8 +858,8 @@ function Game() {
 function DeathScreen(props) {
   return (
     <div className="death-message">
-      <h1>You Died</h1>
-      <h1 className="replay-button" onClick={props.replay}>Play Again?</h1>
+      <h1 style={{fontSize: "2vw"}}>You Died</h1>
+      <h1 style={{fontSize: "2vw"}} className="replay-button" onClick={props.replay}>Play Again?</h1>
     </div>
   )
 }
@@ -890,9 +890,9 @@ function CreditsScreen(props) {
       */
   return (
     <div className="credits death-message">
-      <h1>Congratulations! You Survived</h1>
+      <h1 style={{fontSize: "2vw"}}>Congratulations! You Survived</h1>
       
-      <h1 className="replay-button" onClick={props.replay}>Play Again?</h1>
+      <h1 style={{fontSize: "2vw"}} className="replay-button" onClick={props.replay}>Play Again?</h1>
     </div>
   )
 }
