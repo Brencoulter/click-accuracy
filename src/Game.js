@@ -844,7 +844,7 @@ function Game() {
                 {info && <Info />}
               </Col>
               <Col xs={3} className="no-pad log scroll">
-                {info ? <Code className="clickable" onClick={toggleInfo} style={{ fontSize: "30px"}}/> : <InfoCircle onClick={toggleInfo} style={{ fontSize: "30px"}}/>}
+                {info ? <Code className="clickable" onClick={toggleInfo} style={{ fontSize: "30px"}}/> : <InfoCircle onClick={toggleInfo} style={{ fontSize: "30px"}} className="clickable"/>}
                 {info ? <p>Game Log</p> : <p>About</p>}
               </Col>
             </Row>
@@ -1072,7 +1072,7 @@ function Info(props) {
     <p><span style={{ fontSize: "15px" }}><ArrowLeftSquare /><ArrowUpSquare /><ArrowRightSquare /><ArrowDownSquare /></span> to move</p>
     <p>This game was put together in an effort to complete and polish a larger project</p>
     <p>During the development, I learned a great deal about state management, data structures, and abstracting functionality. I also got to delve into basic pathing algorithms, which then forced me to work on optimisation</p>
-    <p>So what next? I plan to continuously upgrade this game over time. Balancing the gameplay (I'm no game designer) is first up, and then a scoring system of some kind. I also wish to implement a feature for users to sign in and save their progress.</p>
+    <p>So what next? I plan to continuously upgrade this game over time. A start button and balancing the gameplay (I'm no game designer) is first up, and then a scoring system of some kind. I also wish to implement a feature for users to sign in and save their progress.</p>
   <p>Settings such as map size and mobile/touchscreen friendly are also on the cards</p>
     </div>
   )
