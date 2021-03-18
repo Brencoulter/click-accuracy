@@ -836,7 +836,7 @@ function Game() {
             </Row>
             <Row noGutters >
               <Col xs={3} className="no-pad log scroll">
-                <ArrowRepeat className="clickable" onClick={replay}/>
+                <ArrowRepeat className="clickable" onClick={replay} style={{ fontSize: "30px"}}/>
                 <p>Restart</p>
               </Col>
               <Col xs={6} className="no-pad">
@@ -844,7 +844,7 @@ function Game() {
                 {info && <Info />}
               </Col>
               <Col xs={3} className="no-pad log scroll">
-                {info ? <Code className="clickable" onClick={toggleInfo} style={{ fontSize: "30px"}}/> : <InfoCircle onClick={toggleInfo} style={{ fontSize: "40px"}}/>}
+                {info ? <Code className="clickable" onClick={toggleInfo} style={{ fontSize: "30px"}}/> : <InfoCircle onClick={toggleInfo} style={{ fontSize: "30px"}}/>}
                 {info ? <p>Game Log</p> : <p>About</p>}
               </Col>
             </Row>
