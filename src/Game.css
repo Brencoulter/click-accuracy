@@ -68,7 +68,7 @@
 }
 
 .log {
-  height: 10vw;
+  height: 9vw;
   overflow-y: scroll;
   background-color: rgb(40, 40, 40);
 }
