@@ -1,0 +1,60 @@
+@font-face{
+  font-family:'digital-clock-font';
+  src: url('./fonts/DIGITALDREAM.ttf');
+ }
+
+.dark-background {
+  background-color: rgb(40, 40, 40);
+}
+
+.counter {
+  font-family: "digital-clock-font";
+  padding: 20px;
+  color: red;
+}
+
+.target {
+  position: absolute;
+  width: 5vw;
+  height: 5vw;
+  margin: 0;
+}
+
+.field {
+  position: relative;
+  background-color: rgba(31, 40, 51, 1);
+  height: 70vh;
+  width: 95%;
+  margin: auto;
+  border-radius: 20px;
+}
+
+p {
+  font-size: 20px;
+}
+
+.high-scores {
+  font-size: 20px;
+  color: red;
+}
+
+.info {
+  font-size: 20px;
+  color: red;
+}
+
+.scores {
+  z-index: 10;
+  color: green;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.icon {
+  font-size: 50px;
+  color: blue;
+}
+
+
+/* *{ border: 1px solid red; } */
