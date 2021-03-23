@@ -29,12 +29,12 @@ function Click() {
   const [viewInfo, setViewInfo] = useState(false)
 
   const toggleViewScores = () => {
-    setViewScores(true)
+    setViewScores(!viewScores)
     setViewInfo(false)
   }
 
   const toggleViewInfo = () => {
-    setViewInfo(true)
+    setViewInfo(!viewInfo)
     setViewScores(false)
   }
 
@@ -69,15 +69,15 @@ function Click() {
 
   return (
     <Container fluid className="dark-background">
-      <Row>
-        <Col className="scores" xs={3}>
+      <Row style={{height: "15vh", alignItems: "center"}}>
+        <Col className="scores display" xs={4} >
           <h3>Score: {score}</h3>
           <h3>Highscore: {highScore}</h3>
         </Col>
-        <Col className="title" xs={6}>
-              <h1 className="text-center">Mouse Training</h1>          
+        <Col className="title" xs={4} >
+          <h1 className="text-center">M{targetSvg}USE TRAINING </h1>          
         </Col>
-        <Col className="timer" xs={3}>
+        <Col className="display" xs={4}>
           <Counter mounted={mountedRef.current} playing={playing} end={end}/>
         </Col>
       </Row>
@@ -94,9 +94,9 @@ function Click() {
         viewScores={viewScores}
         viewInfo={viewInfo}/>          
       </Row>
-      <Row className="buttons">
+      <Row className="buttons" style={{height: "15vh", alignItems: "center"}}>
         <Col xs={3}>
-          <House className="icon" />
+          <a href="https://portfolio-brencoulter.vercel.app" target="_blank" ><House className="icon" /></a>
           <h4>Home</h4>
         </Col>
         <Col xs={6}>
@@ -105,7 +105,7 @@ function Click() {
         </Col>
         <Col xs={3}>
           <InfoCircle className="icon" onClick={toggleViewInfo}/>
-          <h4>About this game</h4>
+          <h4>About</h4>
         </Col>
       </Row>     
     </Container>
@@ -121,14 +121,14 @@ function GameField(props) {
       <div className='field' onClick={props.miss}>
         {props.playing && <Target click={props.hit} className="target" x={positionX+"%"} y={positionY+"%"}/>}
         <Container className="info-container">
-          <Row className="justify-content-center" style={{minHeight: "30vh"}}>
-            <Col xs={4}>
+          <Row className="justify-content-center" style={{minHeight: "35vh", maxHeight: "55vh"}}>
+            <Col>
               {props.viewScores && <ViewHighScores submitted={props.submitted}/>}
               {props.viewInfo && <Info />}
             </Col>
           </Row>
           <Row className="justify-content-center">
-            <Col className="text-center"xs={4}>
+            <Col className="text-center">
             
               {props.gameOver && <p className="game-over" >Game Over</p>}
               {(props.gameOver && !props.submitted) && <SubmitScore highScore={props.highScore} setSubmitted={props.setSubmitted}/>}
@@ -164,10 +164,16 @@ function SubmitScore(props) {
   }
  
   return (
-    <Form style={{ fontSize: "20px"}} onSubmit={handleSubmit} >
-      <Form.Label className="smaller">Submit High Score</Form.Label>
-      <Form.Control type="text" placeholder="name" onChange={e => setInput(e.target.value)} value={input}></Form.Control>
-      {input && <Button type="submit" style={{backgroundColor: "blue", fontSize: "20px"}}>Submit High Score?</Button>}
+    <Form onSubmit={handleSubmit} className="submit-form">
+      <Form.Label>Submit High Score</Form.Label>
+      <Row>
+        <Col  >
+      <Form.Control  style={{ dispaly: "inline", width: "200px", marginLeft: "auto", marginRight: "0px"}} type="text" placeholder="name" onChange={e => setInput(e.target.value)} value={input}></Form.Control>
+      </Col>
+      <Col>
+      <Button type="submit" style={{backgroundColor: "blue", fontSize: "20px", float: "left", marginRight: "auto", marginLeft: "0px" }}>Submit High Score?</Button>
+      </Col>
+      </Row>
     </Form>
   )
 };
@@ -219,25 +225,39 @@ function Target(props) {
   )
 }
 
+const targetSvg = 
+    <svg className="target-svg title" style={{width: "40px", height: "40px"}}>
+    <circle cx="20" cy="20" r="18" stroke="black" stroke-width="0" fill="red" />
+    <circle cx="20" cy="20" r="15" stroke="black" stroke-width="0" fill="white" />
+    <circle cx="20" cy="20" r="10" stroke="black" stroke-width="0" fill="red" />
+    <circle cx="20" cy="20" r="5" stroke="black" stroke-width="0" fill="white" />
+    </svg>
+
 function Counter(props) {
   const [counter, setCounter] = useState(playTime*100)
-
+  let playing = props.playing
+  let mounted = props.mounted
+  let end = props.end
   useEffect(() => {
-    if (props.mounted && props.playing) {
+    if (mounted && playing) {
       const countDown = setTimeout(() => {
         setCounter(counter - 1)
       }, 10)
       if (counter === 0) {
-        props.end()
+        end()
         setCounter(playTime*100)
       }
       return () => clearTimeout(countDown)
     }
-  }, [props.playing, counter])
+  }, [playing, counter])
 
   return (
-    <h3 className="counter">Time Remaining {props.playing ? counter.toString().charAt(0)+":"+counter.toString().charAt(1)+counter.toString().charAt(2) : "0:00"}</h3>
+    <div className="counter">
+      <h3 >Time Remaining</h3> 
+      <h3 >{props.playing ? counter.toString().charAt(0)+":"+counter.toString().charAt(1)+counter.toString().charAt(2) : "0:00"}</h3>
+    </div>
   )
+
 }
 
 export default Click;

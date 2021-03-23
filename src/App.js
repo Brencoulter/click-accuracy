@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import Click from "./Click.js";
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import './Click.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

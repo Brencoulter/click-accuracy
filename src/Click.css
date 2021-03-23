@@ -3,8 +3,37 @@
   src: url('./fonts/DIGITALDREAM.ttf');
  }
 
+ /* 
+Background: #1F2833
+Tites: #66FCF1
+Text: #C5C6C7
+Dark Text: #45A29E
+*/
+
 .dark-background {
   background-color: rgb(40, 40, 40);
+}
+
+.title h1{
+  font-size: 2.5rem;
+  color: #66FCF1;
+  text-align: center;
+}
+
+.target-svg {
+  align-self: center;
+  margin-bottom: 10px;
+  padding: 0px;
+}
+
+.scores {
+  font-family: "digital-clock-font";
+  padding: 20px;
+  color: #DDA74F;
+}
+
+.display h3 {
+  font-size: 1.8vw;
 }
 
 .counter {
@@ -12,6 +41,8 @@
   padding: 20px;
   color: red;
 }
+
+
 
 .target {
   position: absolute;
@@ -38,23 +69,56 @@ p {
   color: red;
 }
 
+
+.game-over {
+  color: mintcream;
+}
+
+.submit-form {
+  color: mintcream;
+}
+
 .info {
   font-size: 20px;
   color: red;
 }
 
-.scores {
-  z-index: 10;
-  color: green;
-  width: 100%;
-  padding: 0;
-  margin: 0;
+.buttons {
+  color: #66FCF1;
 }
 
-.icon {
-  font-size: 50px;
-  color: blue;
+.icon:hover {
+  cursor: pointer;
+}
+
+/*
+
+ *{ border: 1px solid red; } 
+
+ */
+
+ /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .icon {
+    font-size: 23px;
+    color: #66FCF1;
+  }
+
 }
 
 
-/* *{ border: 1px solid red; } */
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .icon {
+    font-size: 23px;
+    color: #66FCF1;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .icon {
+    font-size: 3vw;
+    color: #66FCF1;
+  }
+}
